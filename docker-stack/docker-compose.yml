@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+    spring:
+        image: sikiryl/spring-app
+        ports:
+            - 8081:8088
+
+    kubeops-mysql:
+        image: mysql:latest
+        environment:
+            - MYSQL_ROOT_PASSWORD=kubeops-root
+            - MYSQL_USER=kubeops_user
+            - MYSQL_PASSWORD=kubeops_password
+            - MYSQL_DATABASE=kubeops
+        volumes:
+            - /tmp/mysql/data/:/var/lib/mysql
+        ports:
+            - 3307:3306
